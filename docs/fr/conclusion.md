@@ -9,7 +9,7 @@ lang-ref: conclusion
 
 # Le mot de la fin
 
-Nous arrivons au terme de ce tutoriel. J’espère que vous l’avez apprécié et que vous avez pu en retenir l’essentiel. N’hésitez pas à me communiquer vos commentaires, ou à me demander des précisions sur les éléments que vous n’avez pas bien compris, sur la page de cette Création sur le site officiel.
+Nous arrivons au terme de ce tutoriel. J’espère que vous l’avez apprécié et que vous avez pu en retenir l’essentiel. N’hésitez pas à me communiquer vos commentaires, ou à me demander des précisions sur les éléments que vous n’avez pas bien compris, [sur la page officielle de cette Création](https://gamebuino.com/creations/big-tuto-on-shading-effect-in-high-resolution).
 
 > Je tiens tout particulièrement à adresser à Andy ([aoneill](https://gamebuino.com/@aoneill)) mes plus chaleureux remerciements pour ses contributions majeures sur la planète Gamebuino, et en particulier les clefs magiques qu'il nous a confiées pour ouvrir les portes de la haute résolution en `RGB565`. Il devient désormais possible de faire de très belles choses sur cette petite console, en tirant parti de toutes ses capacités.
 > <div style="margin-top:1em;text-align:center;"><strong>Un énorme merci Andy !</strong><br /><i class="far fa-2x fa-handshake"></i></div>
