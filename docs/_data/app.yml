@@ -1,0 +1,9 @@
+name: Shading Effect
+icon: shading-128x128.png
+screen: shading-320x256.gif
+title:
+  fr: Éclairage tamisé en Haute Résolution
+  en: Shading Effect in High Resolution
+subtitle:
+  fr: Contourner gb.display avec gb.tft
+  en: Bypass gb.display with gb.tft
