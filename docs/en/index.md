@@ -12,7 +12,7 @@ When Andy ([aoneill](https://gamebuino.com/@aoneill)) published his article abou
 
 And then, after finishing my first tutorial on the [Game of Life](https://iw4rr10r.github.io/gb-game-of-life/), I was finally beginning to understand something about that *barbarbaric* language, and I said to myself, "Come on! Next step: understanding Andy's thing... it still looks pretty good. Well, and this guy seems to be doing crazy stuff..."
 
-What a great idea I had that day.... I had the impression I was discovering the Holy Grail! So, believe me, if you haven't read it yet.... Go for it! Go for it!
+What a great idea I had that day.... I had the impression I was discovering the Holy Grail! So, believe me, if you haven't read it yet.... Go for it!
 
 So I immediately wanted to write a little project to see if I understood his technique... and it gave what I will develop for you in this tutorial. But don't stop at its simplistic title. I sincerely believe that it develops many useful tips for video game programming. And it explains in detail Andy's magical technique. So I think it could really be life-saving for all of you, if you didn't understand Andy's method correctly.
 
