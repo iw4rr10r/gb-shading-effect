@@ -1,8 +1,8 @@
 ---
 rank: 9
 layout: default
-title: Effet d'Ombres
-permalink: /fr/effet-d-ombres/
+title: Éclairage Tamisé
+permalink: /fr/eclairage-tamise/
 lang: fr
 lang-ref: shading
 ---
