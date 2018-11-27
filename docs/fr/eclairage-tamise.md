@@ -157,7 +157,7 @@ void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {
 ```
 
 
-# Première mise en peuvre
+# Première mise en oeuvre
 
 Commençons par déclarer deux constantes dans `Tiling.h` :
 
@@ -340,7 +340,7 @@ Ce qui plombe les performances ici est bien entendu le calcul sur la luminosité
 
 ![precalculated spritesheet](../../assets/figures/shading/precalculated-spritesheet.png){: width="256" height="64" class="shadow" }
 
-Il suffira alors d'aller piocher le pixel dans la dalle approprié. Cette solution n'est pas mal du tout... mais elle a trois inconvénients majeurs ! S'il vous prenait l'envie de modifier le nombre de niveaux de luminosité, il vous faudrait alors entièrement redessiner la spritesheet, ce qui peut s'avérer laborieux à la longue... De même que si vous souhaitez afficher de nombreux niveaux de luminosité, la conception de la spritesheet peut là aussi s'avérer laborieux... Et de surcroît, plus vous aurez de dalles à y intégrer, plus elles occuperont de l'espace en mémoire ! Vous voyez que ça n'est pas la meilleure solution tout compte fait.
+Il suffira alors d'aller piocher le pixel dans la dalle approprié. Cette solution n'est pas mal du tout... mais elle a trois inconvénients majeurs ! S'il vous prenait l'envie de modifier le nombre de niveaux de luminosité, il vous faudrait alors entièrement redessiner la spritesheet, ce qui peut s'avérer laborieux à la longue... De même que si vous souhaitez afficher de nombreux niveaux de luminosité, la conception de la spritesheet peut là aussi s'avérer laborieuse... Et de surcroît, plus vous aurez de dalles à y intégrer, plus elles occuperont de l'espace en mémoire ! Vous voyez que ça n'est pas la meilleure solution tout compte fait.
 
 
 # La bonne solution
@@ -349,11 +349,13 @@ Mais il existe une autre solution <i class="far fa-smile"></i>. En effet, il suf
 
 ![sprite colors](../../assets/figures/shading/sprite-colors.png){: width="229" height="128" }
 
-Il ne restera plus ensuite qu'à construire une palette de couleurs `COLORMAP` présentant toutes les déclinaisons des couleurs de référence que nous avons indexées, en fonction des niveaux de luminosité souhaités... et à écrire les codes couleurs en **little-endian**. Bon... ça fait quand même un peu de boulot... Mais j'ai pensé à vous : je vais publier, en même temps que ce tuto, un petit outil qui va faire tous les calculs pour vous et vous fournir *in fine* les constantes `BITMAP` et `COLORMAP` correspondantes.
+Il ne restera plus ensuite qu'à construire une palette de couleurs `COLORMAP` présentant toutes les déclinaisons des couleurs de référence que nous avons indexées, en fonction des niveaux de luminosité souhaités... et à écrire les codes couleurs en **little-endian**. Bon... ça fait quand même un peu de boulot... Mais j'ai pensé à vous : j'ai publié, en même temps que ce tuto, un petit outil qui va faire tous les calculs pour vous et vous fournir *in fine* les constantes `BITMAP` et `COLORMAP` correspondantes.
 
-> Je vous mettrai le lien de cette création ici dès que je l'aurai publiée...
+![img4shading](../../assets/figures/shading/img4shading.gif){: width="160" height="128" class="shadow" }
 
-Dès que l'outil sera disponible, saisissez le paramétrage suivant, puis faîtes glisser l'image `tiles.png` sur l'encart **Drag and drop your image here** :
+<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/fr/creations/image-transcoder-for-shading-in-high-res)</span>
+
+Sur la page de l'outil, saisissez le paramétrage suivant, puis faîtes glisser l'image `tiles.png` sur l'encart **Drag and drop your image here** :
 
 ![img4shading-settings](../../assets/figures/shading/img4shading-settings.png){: width="280" height="576" class="shadow" }
 
@@ -469,6 +471,7 @@ class Tiling : public Renderable
     public:
 
         Tiling();
+        ~Tiling();
 
         // les commandes de mouvement
         void left();

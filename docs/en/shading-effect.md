@@ -350,11 +350,13 @@ But there is another solution <i class="far fa-smile"></i>. Indeed, we could ind
 
 ![sprite colors](../../assets/figures/shading/sprite-colors.png){: width="229" height="128" }
 
-Then all that remains is to build a `COLORMAP` presenting all the declinations of the reference colors we have indexed, according to the desired brightness levels... and to write the color codes in **little-endian**. Well... it's still a little work... But I thought of you: I will publish, at the same time as this tutorial, a small tool that will do all the calculations for you and provide you *in fine* with the corresponding `BITMAP` and `COLORMAP` constants.
+Then all that remains is to build a `COLORMAP` presenting all the declinations of the reference colors we have indexed, according to the desired brightness levels... and to write the color codes in **little-endian**. Well... it's still a little work... But I thought of you: I published, at the same time as this tutorial, a small tool that will do all the calculations for you and provide you *in fine* with the corresponding `BITMAP` and `COLORMAP` constants.
 
-> I will put the link of this creation here as soon as I have published it...
+![img4shading](../../assets/figures/shading/img4shading.gif){: width="160" height="128" class="shadow" }
 
-As soon as the tool is available, enter the following settings, then drag and drop the `tiles.png':
+<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/fr/creations/image-transcoder-for-shading-in-high-res)</span>
+
+On the tool page, enter the following settings, then drag and drop the `tiles.png':
 
 ![img4shading-settings](../../assets/figures/shading/img4shading-settings.png){: width="280" height="576" class="shadow" }
 
@@ -470,6 +472,7 @@ class Tiling : public Renderable
     public:
 
         Tiling();
+        ~Tiling();
 
         // the move commands invoked by `GameEngine`
         void left();

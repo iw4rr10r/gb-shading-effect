@@ -171,9 +171,13 @@ class Tiling : public Renderable
 
     public:
 
-        // on définit un constructeur dans lequel
+        // on déclare un constructeur dans lequel
         // nous initialiserons le vecteur de déplacement
         Tiling();
+
+        // un destructeur doit nécessairement être déclaré ici pour
+        // éviter de potentielles fuites de mémoire
+        ~Tiling();
 
         // la méthode imposée par le contrat `Renderable`
         void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) override;
@@ -236,6 +240,13 @@ const uint16_t Tiling::BITMAP[] = {
 
 // vient ensuite le constructeur, qui initialise le vecteur de déplacement
 Tiling::Tiling() : offsetX(0), offsetY(0) {}
+
+// le destructeur doit être défini pour éviter
+// les potentielles fuites de mémoire
+Tiling::~Tiling() {
+    // il ne fait rien de particulier ici,
+    // mais c'est important d'y penser !
+}
 
 // et on définit la méthode de calcul du rendu du dallage
 void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {

@@ -115,6 +115,7 @@ class Tiling : public Renderable
 
         // the constructor will now have to initialize all vectors
         Tiling();
+        ~Tiling();
 
         // the move commands invoked by `GameEngine`
         void left();

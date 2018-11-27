@@ -35,6 +35,10 @@ class Renderable
 {
     public:
 
+        // destructeur virtuel pur
+        // il devra nécessairement être *étendu* dans les classes dérivées
+        virtual ~Renderable() = 0;
+
         // méthode virtuelle pure
         virtual void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) = 0;
 };
@@ -43,6 +47,19 @@ class Renderable
 ```
 
 La notion d'interface n'existe pas au sens strict du terme en C++, comme on peut la trouver en Java ou en Ada par exemple. Mais il existe une possibilité pour l'émuler en s'appuyant sur la notion de classe abstraite et de méthode virtuelle *pure*. Une méthode virtuelle pure est une méthode qui est déclarée mais non définie dans une classe. Elle est définie dans une des classes dérivées. Pour déclarer une méthode virtuelle pure dans une classe, il suffit de faire suivre sa déclaration de « `= 0` ». La méthode doit également être déclarée avec le mot-clef `virtual`.
+
+Il existe une petite exception concernant les destructeurs virtuels purs. D'une part, une classe abstraite doit **nécessairement** déclarer un destructeur virtuel (pur ou non), mais elle doit également le **définir**... même s'il est pur... et même s'il ne fait rien de particulier. Cette contrainte est imposée par le processus de destruction lorsqu'il opère sur une filiation entre la classe de base (ici notre classe abstraite) et les classes dérivées. En effet, un destructeur virtuel n'est pas *surchargé*, mais **étendu** : le destructeur le plus spécifique (celui des classes dérivées) invoque d'abord le destructeur de sa classe de base (le plus général), avant de s'exécuter lui-même ! Il est très important que vous reteniez ce mécanisme.
+
+Donc, voici la définition (vide) de notre destructeur virtuel :
+
+<div class="filename">Renderable.cpp</div>
+```c++
+#include "Renderable.h"
+
+// un destructeur virtuel pur doit être défini dans une classe abstraite
+// et de surcroît, il doit être vide si elle émule une interface
+Renderable::~Renderable() {}
+```
 
 Donc, chaque objet répondant à l'*interface* `Renderable` devra implémenter la méthode `draw()` pour se dessiner lorsqu'il recevra une notification du moteur de rendu `Renderer` pour le prévenir que c'est à son tour de se dessiner. Et souvenez-vous de ce que nous avions mentionné dans la définition de la classe `Renderer` :
 
@@ -71,7 +88,7 @@ On préfèrera dans ce cas gérer une structure de données dynamique, dont la t
 
 # Collection dynamique d'observateurs
 
-Nous allons donc attribuer une liste d'observateurs à notre moteur de rendu. Cette liste sera désignée par la variable statique `listeners` (les observeurs sont également appelés des *écouteurs*). Alors, faudra-t-il déclarer cette variable de cette façon ?
+Nous allons donc attribuer une liste d'observateurs à notre moteur de rendu. Cette liste sera désignée par la variable statique `listeners` (les observateurs sont également appelés des *écouteurs*). Alors, faudra-t-il déclarer cette variable de cette façon ?
 
 ```c++
 static Renderable* listeners;

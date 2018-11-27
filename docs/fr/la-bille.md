@@ -168,6 +168,10 @@ class Ball : public Renderable
         static const uint8_t Y_POS;
 
     public:
+    
+        // un destructeur doit nécessairement être déclaré ici pour
+        // éviter de potentielles fuites de mémoire
+        ~Ball();
 
         // la fameuse méthode qui permet de remplir le contrat `Renderable`
         void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) override;
@@ -177,6 +181,8 @@ class Ball : public Renderable
 ```
 
 La déclaration qui consiste à dire que la classe `Ball` remplit le contrat défini par l'interface `Renderable` se fait par le biais de l'héritage en C++. Rappelez-vous que la notion d'interface au sens strict du terme n'existe pas ici. Et c'est en utilisant l'héritage multiple du C++ que vous pouvez faire en sorte que vos classes implémentent plusieurs interfaces, en dérivant de plusieurs classes qui définissent différents contrats.
+
+Vous noterez qu'il est impératif ici de prévoir un destructeur. En effet, de manière générale, les classes dérivées peuvent allouer de la mémoire ou contenir des références à d'autres ressources qui devront être nettoyées lorsque l'objet sera détruit. Si vous ne définissez pas de destructeur ici, lorsque l'instance de `Ball` sera détruite, elle risque d'être vue simplement comme une instance de `Renderable`, auquel cas le destructeur de la classe `Ball` ne sera jamais invoqué. Et donc toutes les ressources qu'elle référence ne seront pas nettoyées, et la mémoire qu'elle a allouée ne sera pas libérée. Vous provoquerez ainsi des fuites de mémoire !
 
 Bien, passons maintenant à la définition de notre classe `Ball` :
 
@@ -216,6 +222,13 @@ const uint16_t Ball::BITMAP[] = {
     0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xffff, 0xffff, 0xffff, 0xffff,
     0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff
 };
+
+// le destructeur doit être défini pour éviter
+// les potentielles fuites de mémoire
+Ball::~Ball() {
+    // il ne fait rien de particulier ici,
+    // mais c'est important d'y penser !
+}
 
 // et on définit la méthode de calcul du rendu de la bille
 void Ball::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {

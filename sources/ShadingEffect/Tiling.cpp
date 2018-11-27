@@ -72,6 +72,13 @@ Tiling::Tiling() {
     this->offsetY = 0;
 }
 
+// a destructor must be defined here to
+// avoid potential memory leaks
+Tiling::~Tiling() {
+    // he's not doing anything special here,
+    // but it's important to think about it!
+}
+
 // the fundamental relationship of dynamics applies
 // here in a very simpl way :-)
 

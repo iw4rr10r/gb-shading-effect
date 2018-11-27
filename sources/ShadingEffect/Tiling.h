@@ -44,9 +44,14 @@ class Tiling : public Renderable
 
     public:
 
-        // a constructor is defined in which
+        // a constructor is declared
         // we will initialize all the kinematics properties
+        // in this constructor
         Tiling();
+
+        // a destructor must be declared here to
+        // avoid potential memory leaks
+        ~Tiling();
 
         // the move commands invoked by `GameEngine`
         void left();

@@ -175,9 +175,14 @@ class Tiling : public Renderable
 
     public:
 
-        // a constructor is defined in which
+        // a constructor is declared
         // we will initialize the displacement vector
+        // in this constructor
         Tiling();
+
+        // a destructor must be declared here to
+        // avoid potential memory leaks
+        ~Tiling();
 
         // the method imposed by the `Renderable` contract
         void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) override;
@@ -239,6 +244,13 @@ const uint16_t Tiling::BITMAP[] = {
 
 // then comes the constructor, which initializes the displacement vector
 Tiling::Tiling() : offsetX(0), offsetY(0) {}
+
+// a destructor must be defined here to
+// avoid potential memory leaks
+Tiling::~Tiling() {
+    // he's not doing anything special here,
+    // but it's important to think about it!
+}
 
 // and we define the method for calculating the rendering of the tiling
 void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {

@@ -173,6 +173,10 @@ class Ball : public Renderable
 
     public:
 
+        // a destructor must be declared here to
+        // avoid potential memory leaks
+        ~Ball();
+
         // the famous method of fulfilling the `Renderable` contract
         void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) override;
 };
@@ -181,6 +185,8 @@ class Ball : public Renderable
 ```
 
 The declaration that the `Ball` class fulfills the contract defined by the `Renderable` interface is made through the inheritance in C++. Remember that the notion of interface in the strict sense of the term does not exist here. And it is by using the multiple inheritance of C++ that you can make your classes implement multiple interfaces, deriving from multiple classes that define different contracts.
+
+You will notice that it is imperative here to provide a destructor. Indeed, in general, derived classes can allocate memory or contain references to other resources that will have to be cleaned up when the object is destroyed. If you do not define a destructor here, when the `Ball` instance is destroyed, it may be seen simply as a `Renderable` instance, in which case the destructor of the `Ball` class will never be invoked. And so all the resources it refers to will not be cleaned, and the memory it has allocated will not be released. This will cause memory leaks!
 
 Well, let's now move on to the definition of our `Ball` class:
 
@@ -220,6 +226,13 @@ const uint16_t Ball::BITMAP[] = {
     0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0x0000, 0xffff, 0xffff, 0xffff, 0xffff,
     0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff
 };
+
+// a destructor must be defined here to
+// avoid potential memory leaks
+Ball::~Ball() {
+    // he's not doing anything special here,
+    // but it's important to think about it!
+}
 
 // and we define the method of calculating the rendering of the ball
 void Ball::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {

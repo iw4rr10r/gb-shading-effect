@@ -33,6 +33,13 @@ const uint16_t Ball::BITMAP[] = {
     0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff, 0xffff
 };
 
+// a destructor must be defined here to
+// avoid potential memory leaks
+Ball::~Ball() {
+    // he's not doing anything special here,
+    // but it's important to think about it!
+}
+
 // and we define the method of calculating the rendering of the ball
 void Ball::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {
     // the portion of the sprite which is located within

@@ -24,6 +24,10 @@ class Ball : public Renderable
 
     public:
 
+        // a destructor must be declared here to
+        // avoid potential memory leaks
+        ~Ball();
+
         // the famous method of fulfilling the `Renderable` contract
         void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) override;
 };

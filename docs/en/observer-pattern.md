@@ -35,6 +35,10 @@ class Renderable
 {
     public:
 
+        // pure virtual desctructor
+        // it will have to be *extended* in derived classes
+        virtual ~Renderable() = 0;
+
         // pure virtual method
         virtual void draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) = 0;
 };
@@ -43,6 +47,19 @@ class Renderable
 ```
 
 The notion of interface does not exist in the strict sense of the term in C++, as it can be found in Java or Ada for example. But there is a possibility to emulate it by relying on the notion of abstract class and *pure* virtual method. A pure virtual method is a method that is declared but not defined in a class. It is defined in one of the derived classes. To declare a pure virtual method in a class, simply follow its declaration with "`= 0`". The method must also be declared with the keyword `virtual`.
+
+There is a small exception for pure virtual destructor. On the one hand, an abstract class must **necessarily** declare a virtual destructor (pure or not), but it must also **define it**... even if it is pure... and even if it does nothing particular. This constraint is imposed by the destruction process when it operates on a filiation between the base class (here our abstract class) and the derived classes. Indeed, a virtual destructor is not *overloaded*, but **extended**: the most specific destructor (that of derived classes) first invokes the destructor of its base class (the most general), before executing itself! It is very important that you remember this mechanism.
+
+So, here is the (empty) definition of our virtual destructor:
+
+<div class="filename">Renderable.cpp</div>
+```c++
+#include "Renderable.h"
+
+// a pure virtual destructor must be defined in an abstract class
+// and in addition, it must be empty if she emulates an interface
+Renderable::~Renderable() {}
+```
 
 So, each object responding to the `Renderable` *interface* will have to implement the `draw()` method to draw itself when it receives a notification from the `Renderer` that it is its turn to draw itself. And remember what we mentioned in the definition of the `Renderer` class:
 
