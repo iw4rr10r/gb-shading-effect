@@ -48,9 +48,47 @@ class Renderable
 
 La notion d'interface n'existe pas au sens strict du terme en C++, comme on peut la trouver en Java ou en Ada par exemple. Mais il existe une possibilité pour l'émuler en s'appuyant sur la notion de classe abstraite et de méthode virtuelle *pure*. Une méthode virtuelle pure est une méthode qui est déclarée mais non définie dans une classe. Elle est définie dans une des classes dérivées. Pour déclarer une méthode virtuelle pure dans une classe, il suffit de faire suivre sa déclaration de « `= 0` ». La méthode doit également être déclarée avec le mot-clef `virtual`.
 
-Il existe une petite exception concernant les destructeurs virtuels purs. D'une part, une classe abstraite doit **nécessairement** déclarer un destructeur virtuel (pur ou non), mais elle doit également le **définir**... même s'il est pur... et même s'il ne fait rien de particulier. Cette contrainte est imposée par le processus de destruction lorsqu'il opère sur une filiation entre la classe de base (ici notre classe abstraite) et les classes dérivées. En effet, un destructeur virtuel n'est pas *surchargé*, mais **étendu** : le destructeur le plus spécifique (celui des classes dérivées) invoque d'abord le destructeur de sa classe de base (le plus général), avant de s'exécuter lui-même ! Il est très important que vous reteniez ce mécanisme.
+Il existe une petite exception concernant les destructeurs virtuels purs. D'une part, une classe abstraite doit **nécessairement** déclarer un destructeur virtuel (pur ou non), mais elle doit également le **définir**... même s'il est pur... et même s'il ne fait rien de particulier.
 
-Donc, voici la définition (vide) de notre destructeur virtuel :
+Il est en effet nécessaire de rendre le destructeur d'une classe abstraite **virtuel** car lorsque l'objet instancié à partir d'une de ses classes dérivées sera détruit, vous vous retrouverez dans le cas typique d'un polymorphisme. Prenons par exemple le cas suivant :
+
+```c++
+class X
+{
+    public:
+        ~X();
+};
+
+class Y : X // Y hérite de X
+{
+    private:
+        char* a;
+    public:
+        Y() { a = new char[10]; }
+        ~Y() { delete[] a; }
+};
+
+// et supposons maintenant que l'on fasse la chose suivante :
+
+X* pX = new Y(); // correct: un Y est un X
+delete pX;       // quel destructeur est appelé ici ?
+```
+
+`pX` est considéré comme un `X` alors qu'il est en réalité un `Y`. Autrement dit, lors de sa destruction, c'est le destructeur `~X()` qui sera invoqué et non celui de la classe `Y` ! Ceci introduit un risque potentiel insidieux de fuites mémoires. En effet, dans le cas exposé ci-dessus, la mémoire allouée pour contenir le tableau `a` ne sera jamais libérée puisque le destructeur `~Y()` n'est jamais invoqué ! Plus généralement, et en fonction de ce qu'était censé faire le destructeur `Y()`, le comportement résultant peut s'avérer désastreux...
+
+Ce problème peut être résolu en rendant le destructeur de `X` **virtuel** :
+
+```c++
+class X
+{
+    public:
+        virtual ~X();
+};
+```
+
+En faisant cela, on indique explicitement que la classe `X` a été conçue dans le but d'être dérivée. Et qu'il est alors fondamental de songer à fournir une définition spécifique du destructeur dans ses classes dérivées. Mais surtout : la présence d'un destructeur virtuel dans `X` garantit que l'opération `delete pX` invoque le destructeur de l'objet réellement pointé par `pX`, quel que soit son type. Ici, c'est donc le destructeur `~Y()` qui sera bien invoqué, avant de remonter la chaîne de filiation et d'invoquer le destructeur `~X()` en dernier lieu. Ce qu'il est important de retenir ici, c'est qu'un destructeur virtuel n'est pas *surchargé*, mais **étendu** !!!
+
+Pour en revenir au cas de notre interface `Renderable`, le destructeur virtuel sera défini par une implémentation vide par défaut. Il relèvera ainsi de la responsabilité des classes qui souscriront au contrat `Renderable` de définir spécifiquement leur propre destructeur :
 
 <div class="filename">Renderable.cpp</div>
 ```c++
@@ -58,10 +96,10 @@ Donc, voici la définition (vide) de notre destructeur virtuel :
 
 // un destructeur virtuel pur doit être défini dans une classe abstraite
 // et de surcroît, il doit être vide si elle émule une interface
-Renderable::~Renderable() {}
+Renderable::~Renderable() = default;
 ```
 
-Donc, chaque objet répondant à l'*interface* `Renderable` devra implémenter la méthode `draw()` pour se dessiner lorsqu'il recevra une notification du moteur de rendu `Renderer` pour le prévenir que c'est à son tour de se dessiner. Et souvenez-vous de ce que nous avions mentionné dans la définition de la classe `Renderer` :
+Donc, chaque objet répondant à l'*interface* `Renderable` devra non seulement implémenter son propre destructeur, mais également la méthode `draw()` pour se dessiner lorsqu'il recevra une notification du moteur de rendu `Renderer` pour le prévenir que c'est à son tour de se dessiner. Et souvenez-vous de ce que nous avions mentionné dans la définition de la classe `Renderer` :
 
 <div class="filename">Renderer.cpp</div>
 ```c++

@@ -48,9 +48,47 @@ class Renderable
 
 The notion of interface does not exist in the strict sense of the term in C++, as it can be found in Java or Ada for example. But there is a possibility to emulate it by relying on the notion of abstract class and *pure* virtual method. A pure virtual method is a method that is declared but not defined in a class. It is defined in one of the derived classes. To declare a pure virtual method in a class, simply follow its declaration with "`= 0`". The method must also be declared with the keyword `virtual`.
 
-There is a small exception for pure virtual destructor. On the one hand, an abstract class must **necessarily** declare a virtual destructor (pure or not), but it must also **define it**... even if it is pure... and even if it does nothing particular. This constraint is imposed by the destruction process when it operates on a filiation between the base class (here our abstract class) and the derived classes. Indeed, a virtual destructor is not *overloaded*, but **extended**: the most specific destructor (that of derived classes) first invokes the destructor of its base class (the most general), before executing itself! It is very important that you remember this mechanism.
+There is a small exception for pure virtual destructors. On the one hand, an abstract class must **necessarily** declare a virtual destructor (pure or not), but it must also **define it**... even if it is pure... and even if it does nothing particular.
 
-So, here is the (empty) definition of our virtual destructor:
+It is indeed necessary to make the destructor of an abstract class **virtual** because when the object instantiated from one of its derived classes is destroyed, you will be in the typical case of a polymorphism. Let's take the following example:
+
+```c++
+class X
+{
+    public:
+        ~X();
+};
+
+class Y : X // Y inherits from X
+{
+    private:
+        char* a;
+    public:
+        Y() { a = new char[10]; }
+        ~Y() { delete[] a; }
+};
+
+// and now suppose that we do the following:
+
+X* pX = new Y(); // correct: a Y is an X
+delete pX;       // which destructor is called here?
+```
+
+`pX` is considered as an `X` when it is actually a `Y`. In other words, when it is destroyed, it is the `~X()` destructor that will be invoked and not the one of the class `Y`! This introduces a potential insidious risk of memory leaks. Indeed, in the case described above, the memory allocated to contain the `a` array will never be released since the `~Y()` destructor is never invoked! More generally, and depending on what the `Y()` destructor was supposed to do, the resulting behavior can be disastrous...
+
+This problem can be solved by making the `X` destructor **virtual**:
+
+```c++
+class X
+{
+    public:
+        virtual ~X();
+};
+```
+
+By doing this, it is explicitly stated that the `X` class was designed to be derived. And that it is then fundamental to consider providing a specific definition of the destructor in its derived classes. But above all: the presence of a virtual destructor in `X` ensures that the operation `delete pX` invokes the destructor of the object actually pointed by `pX`, regardless of its type. Here, it is therefore the `~Y()` destructor that will be invoked, before going up the chain of inheritance and invoking the `~X()` destructor last. What is important to remember here is that a virtual destructor is not *overloaded*, but **extended**!!!!
+
+Returning to the case of our `Renderable` interface, the virtual destructor will be defined by a default empty implementation. It will thus be the responsibility of the classes that will subscribe to the `Renderable` contract to specifically define their own destructor:
 
 <div class="filename">Renderable.cpp</div>
 ```c++
@@ -58,10 +96,10 @@ So, here is the (empty) definition of our virtual destructor:
 
 // a pure virtual destructor must be defined in an abstract class
 // and in addition, it must be empty if she emulates an interface
-Renderable::~Renderable() {}
+Renderable::~Renderable() = default;
 ```
 
-So, each object responding to the `Renderable` *interface* will have to implement the `draw()` method to draw itself when it receives a notification from the `Renderer` that it is its turn to draw itself. And remember what we mentioned in the definition of the `Renderer` class:
+So, each object responding to the `Renderable` *interface* will have to implement not only its own destructor, but also the `draw()` method to draw itself when it receives a notification from the `Renderer` that it is its turn to draw itself. And remember what we mentioned in the definition of the `Renderer` class:
 
 <div class="filename">Renderer.cpp</div>
 ```c++
