@@ -74,7 +74,7 @@ X* pX = new Y(); // correct: a Y is an X
 delete pX;       // which destructor is called here?
 ```
 
-`pX` is considered as an `X` when it is actually a `Y`. In other words, when it is destroyed, it is the `~X()` destructor that will be invoked and not the one of the class `Y`! This introduces a potential insidious risk of memory leaks. Indeed, in the case described above, the memory allocated to contain the `a` array will never be released since the `~Y()` destructor is never invoked! More generally, and depending on what the `Y()` destructor was supposed to do, the resulting behavior can be disastrous...
+`pX` is considered as an `X` when it is actually a `Y`. In other words, when it is destroyed, it is the `~X()` destructor that will be invoked and not the one of the class `Y`! This introduces a potential insidious risk of memory leaks. Indeed, in the case described above, the memory allocated to contain the `a` array will never be released since the `~Y()` destructor is never invoked! More generally, and depending on what the `~Y()` destructor was supposed to do, the resulting behavior can be disastrous...
 
 This problem can be solved by making the `X` destructor **virtual**:
 
