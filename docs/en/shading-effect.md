@@ -354,7 +354,7 @@ Then all that remains is to build a `COLORMAP` presenting all the declinations o
 
 ![img4shading](../../assets/figures/shading/img4shading.gif){: width="160" height="128" class="shadow" }
 
-<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/fr/creations/image-transcoder-for-shading-in-high-res)</span>
+<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/creations/image-transcoder-for-shading-in-high-res)</span>
 
 On the tool page, enter the following settings, then drag and drop the `tiles.png':
 

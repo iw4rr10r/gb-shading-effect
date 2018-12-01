@@ -353,7 +353,7 @@ Il ne restera plus ensuite qu'à construire une palette de couleurs `COLORMAP` p
 
 ![img4shading](../../assets/figures/shading/img4shading.gif){: width="160" height="128" class="shadow" }
 
-<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/fr/creations/image-transcoder-for-shading-in-high-res)</span>
+<span style="display:block;text-align:center;" markdown="1">[Image Transcoder for Shading in High Res](https://gamebuino.com/creations/image-transcoder-for-shading-in-high-res)</span>
 
 Sur la page de l'outil, saisissez le paramétrage suivant, puis faîtes glisser l'image `tiles.png` sur l'encart **Drag and drop your image here** :
 
