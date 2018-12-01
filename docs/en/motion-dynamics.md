@@ -196,14 +196,13 @@ Okay! Go ahead! Compile... upload the binary to the META... and test it!... What
 What's going on? Well, everything is going fine! Believe me! <i class="far fa-smile"></i> But I have not yet told you about another fundamental principle of Newtonian physics: **inertia**.
 
 
-
 # Principle of inertia
 
 > In physics, the inertia of a body, in a Galilean reference system (known as inertial), is its tendency to maintain its speed: in the absence of external influence, any point body persists in a uniform rectilinear movement. Inertia is also called the *principle of inertia*, or *law of inertia*, and, since Newton, *Newton's first law*.
 >
 > The law of inertia expresses the fact that if the speed $$\vec{v}$$ of the point body with respect to the Galilean reference point is constant, "the sum of the forces $$\vec{F_i}$$ acting on the body is zero":
 >
-> $$\vec{v} = cte \iff \sum_{i} \vec{F_i} = \vec{0}$$
+> $$\vec{v} = const \iff \sum_{i} \vec{F_i} = \vec{0}$$
 
 Do you understand now? This is the reason why the speed of the ball never slows down (unless a force opposite to the direction of its motion is applied). It is quite simply the principle of inertia that is at work in our modeling. Also, to add more realism to our game scene, we could consider that the tiling on which the ball moves induces friction forces on the ball. In physics, friction is an interaction that opposes the relative motion between two systems in contact. In other words, the tiling (which is fixed) interacts with the ball in such a way as to oppose its movement. This simply means that this interaction can be roughly modelled by a weakening of the velocity vector of the ball. If we now consider that the ball is fixed (since it is followed by the camera), it is the tiling that moves relatively to the ball. As a result, friction causes the tiling speed to decrease relatively to the ball.
 
