@@ -346,7 +346,7 @@ void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {
             // be fully determined
             index = index_y + (xo % TILE_WIDTH) + (jump * nfo);
 
-            // all that remains is to pick the color code of the sprite
+            // all that remains is to pick the color code of the pixel
             value = BITMAP[index];
 
             // and to copy it into the stamp if it is not a

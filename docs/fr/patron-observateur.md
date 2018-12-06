@@ -121,7 +121,7 @@ Nous retrouvons donc ces 3 paramètres comme arguments de la fonction `draw()`.
 
 Bien, maintenant que le *contrat* est établi, il faut ajouter à notre moteur de rendu la capacité de gérer une collection d'observateurs `Renderable`. Nous pourrions gérer cela avec un simple tableau... l'ennui, c'est qu'en C++ un tableau doit nécessairement être dimensionné de manière à ce que l'espace mémoire nécessaire à le contenir soit réservé. Or, dans un jeu, le nombre d'objets présents sur la scène de jeu et devant être affichés peut être très variable. Il est donc dangereux ou limitatif de définir la taille d'un tel tableau *a priori*. On peut même avoir tendance à vouloir allouer plus d'espace que nécessaire pour éviter d'atteindre les limites du nombre d'objets pouvant être référencés dans ce tableau. C'est donc définitivement une très mauvaise idée !
 
-On préfèrera dans ce cas gérer une structure de données dynamique, dont la taille peut varier selon les besoins au cours de l'exécution du programme. L'une des structures de données dynamiques bien connues parmi les plus simple en algorithmique est la *liste chaînée*.
+On préfèrera dans ce cas gérer une structure de données dynamique, dont la taille peut varier selon les besoins au cours de l'exécution du programme. L'une des structures de données dynamiques bien connues parmi les plus simples en algorithmique est la *liste chaînée*.
 
 
 # Collection dynamique d'observateurs
@@ -151,7 +151,7 @@ La déclaration correcte de notre variable statique `listeners` est donc :
 static Node* listeners;
 ```
 
-Et le dernier noeud de la liste aura son pointeur `next` qui pointe sur NULL (rien).
+Et le dernier noeud de la liste aura son pointeur `next` qui pointe sur `NULL` (rien).
 
 Voyons maintenant comment implémenter cette liste chaînée. Pour cela nous allons avoir besoin de déclarer la classe `Node` :
 

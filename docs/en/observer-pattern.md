@@ -150,7 +150,7 @@ The correct declaration of our static variable `listeners` is therefore:
 static Node* listeners;
 ```
 
-And the last node in the list will have its `next` pointer pointing to NULL (nothing).
+And the last node in the list will have its `next` pointer pointing to `NULL` (nothing).
 
 Let's now see how to implement this linked list. For this we will need to declare the class `Node`:
 

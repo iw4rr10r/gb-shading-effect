@@ -104,7 +104,7 @@ class Tiling : public Renderable
         // les coordonnées du vecteur accélération
         float ax,ay;
 
-        // les coordonnées du vecteur vitess
+        // les coordonnées du vecteur vitesse
         float vx,vy;
 
         // les coordonnées du vecteur position ne sont autres

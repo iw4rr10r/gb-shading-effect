@@ -254,7 +254,7 @@ void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {
     // pour optimiser le temps de traitement...
 
     // on va chercher à numéroter les dalles selon les deux axes X et Y
-    // pour leut associer des indices qui pourrait être nommés `tx` et `ty`
+    // pour leur associer des indices qui pourraient être nommés `tx` et `ty`
     // et on va alors calculer un témoin de parité sur ces deux indices :
     //   txodd = true lorsque `tx` est impair et false sinon
     //   tyodd = true lorsque `ty` est impair et false sinon
@@ -342,10 +342,10 @@ void Tiling::draw(uint8_t sliceY, uint8_t sliceHeight, uint16_t* buffer) {
             // être entièrement déterminé
             index = index_y + (xo % TILE_WIDTH) + (jump * nfo);
 
-            // il ne reste plus qu'à piocher le code couleur du sprite
+            // il ne reste plus qu'à piocher le code couleur du pixel
             value = BITMAP[index];
 
-            // et à le recopier dans le tampon s'il s'agit pas d'un
+            // et à le recopier dans le tampon s'il ne s'agit pas d'un
             // pixel transparent, sinon on fixe la couleur noire
             buffer[x + syw] = value != TRANSPARENT_COLOR ? value : 0;
         }
