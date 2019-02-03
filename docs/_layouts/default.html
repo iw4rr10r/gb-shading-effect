@@ -32,7 +32,7 @@
                     <p><a class="github" href="{{ site.github.repository_url }}"><i class="fab fa-github"></i> {{ site.data.translations['github'][page.lang] }}</a></p>
                 </div>
             </div>
-            <div class="logo cell"><span class="reverse">&copy;</span> {{ "now" | date: "%Y" }} Stéphane Calderoni</div>
+            <a class="logo cell" href="https://gamebuino.caffe1ne.com/"><span class="reverse">&copy;</span> 2018-{{ "now" | date: "%Y" }} Stéphane Calderoni</a>
         </div>
         {% assign posts=site.pages | where:"lang-ref", page.lang-ref | sort: 'lang' %}
         {% if posts.size > 1 %}
