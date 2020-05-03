@@ -2,7 +2,7 @@
 rank: 5
 layout: default
 title: Observer Pattern
-permalink: /fr/observer-pattern/
+permalink: /en/observer-pattern/
 lang: en
 lang-ref: observer
 ---
