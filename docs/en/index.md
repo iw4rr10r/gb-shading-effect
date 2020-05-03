@@ -10,7 +10,7 @@ lang-ref: index
 
 When Andy ([aoneill](https://gamebuino.com/@aoneill)) published his article about [High Resolution without gb.display](https://gamebuino.com/creations/high-resolution-without-gb-display), I vaguely looked at it, and I thought to myself, "Wow.... It looks hairy... and what's the story with the DMA? What's the DMA? And in addition, it's written in the official doc that `gb.tft` is part of the **danger zone**... okay, well, we'll see about that later eh!". I started from scratch in C++ just 2 months ago... it scared me...
 
-And then, after finishing my first tutorial on the [Game of Life](https://iw4rr10r.github.io/gb-game-of-life/), I was finally beginning to understand something about that *barbarbaric* language, and I said to myself, "Come on! Next step: understanding Andy's thing... it still looks pretty good. Well, and this guy seems to be doing crazy stuff..."
+And then, after finishing my first tutorial on the [Game of Life](https://m1cr0lab-gamebuino.github.io/gb-game-of-life/), I was finally beginning to understand something about that *barbarbaric* language, and I said to myself, "Come on! Next step: understanding Andy's thing... it still looks pretty good. Well, and this guy seems to be doing crazy stuff..."
 
 What a great idea I had that day.... I had the impression I was discovering the Holy Grail! So, believe me, if you haven't read it yet.... Go for it!
 

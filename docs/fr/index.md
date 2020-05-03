@@ -10,7 +10,7 @@ lang-ref: index
 
 Lorsque Andy ([aoneill](https://gamebuino.com/@aoneill)) a publié sont article [High Resolution without gb.display](https://gamebuino.com/creations/high-resolution-without-gb-display), j'y ai vaguement jeté un oeil, et je me suis dit « Ouhla... ça à l'air coton ce truc... et pi c'est quoi cette histoire de DMA ? Et en plus dans la doc officielle y'a écrit que `gb.tft` fait partie de la **danger zone**... ok, bon ben on verra ça plus tard hein ! ». Moi qui suis parti de zéro en C++ y a tout juste 2 mois, ça m'a fait peur...
 
-Et puis, après avoir fini mon premier tuto sur le [Jeu de la Vie](https://iw4rr10r.github.io/gb-game-of-life/), j'commençais enfin à y comprendre quelque-chose à ce langage de *barbare*, et je me suis dit « Allez ! Prochaine étape : comprendre le truc d'Andy... ça a quand même l'air vachement bien. Et pi c'mec là il a l'air de faire des trucs de ouf... »
+Et puis, après avoir fini mon premier tuto sur le [Jeu de la Vie](https://m1cr0lab-gamebuino.github.io/gb-game-of-life/), j'commençais enfin à y comprendre quelque-chose à ce langage de *barbare*, et je me suis dit « Allez ! Prochaine étape : comprendre le truc d'Andy... ça a quand même l'air vachement bien. Et pi c'mec là il a l'air de faire des trucs de ouf... »
 
 Quelle bonne idée j'ai eu ce jour là... J'ai eu l'impression de découvrir le Saint Graal ! Alors, croyez-moi, si vous ne l'avez pas encore lu... foncez !
 
